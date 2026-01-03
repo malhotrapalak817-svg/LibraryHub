@@ -1,3 +1,11 @@
+export type Department = 
+  | 'Computer Science & IT'
+  | 'Electronics & ECE'
+  | 'Electrical'
+  | 'Civil'
+  | 'Mechanical'
+  | 'Mathematics';
+
 export interface Book {
   id: string;
   title: string;
@@ -8,6 +16,7 @@ export interface Book {
   shelfLocation: string;
   coverColor: string;
   replacementCost: number;
+  department: Department;
 }
 
 export interface BorrowedBook {
