@@ -1,5 +1,5 @@
 import { Book } from '@/lib/types';
-import { MapPin } from 'lucide-react';
+import { MapPin, Building2 } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Card } from '@/components/ui/card';
 
@@ -16,7 +16,7 @@ export function BookCard({ book, onBorrow }: BookCardProps) {
       <div className="flex gap-4 p-4">
         {/* Book Spine Visual */}
         <div
-          className={`${book.coverColor} w-4 h-full min-h-[140px] rounded-sm flex-shrink-0 transition-transform group-hover:translate-x-1`}
+          className={`${book.coverColor} w-4 h-full min-h-[160px] rounded-sm flex-shrink-0 transition-transform group-hover:translate-x-1`}
         />
         
         {/* Book Details */}
@@ -35,6 +35,14 @@ export function BookCard({ book, onBorrow }: BookCardProps) {
               className={isAvailable ? 'bg-available text-available-foreground' : 'bg-muted text-muted-foreground'}
             >
               {isAvailable ? 'Available' : 'Unavailable'}
+            </Badge>
+          </div>
+
+          {/* Department Badge */}
+          <div className="mt-2">
+            <Badge variant="outline" className="text-xs border-primary/30 text-primary">
+              <Building2 className="h-3 w-3 mr-1" />
+              {book.department}
             </Badge>
           </div>
 

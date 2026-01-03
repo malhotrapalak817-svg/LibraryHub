@@ -1,11 +1,11 @@
 import { useState, useMemo } from 'react';
-import { Search, Filter, BookOpen } from 'lucide-react';
+import { Search, Filter, BookOpen, Building2 } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { BookCard } from '@/components/BookCard';
 import { ReminderBanner } from '@/components/ReminderBanner';
-import { books, borrowedBooks } from '@/lib/mockData';
+import { books, borrowedBooks, departments } from '@/lib/mockData';
 import { getBooksDueSoon } from '@/lib/libraryUtils';
-import { Book } from '@/lib/types';
+import { Book, Department } from '@/lib/types';
 import {
   Select,
   SelectContent,
@@ -18,6 +18,7 @@ import { useToast } from '@/hooks/use-toast';
 const Catalog = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [availabilityFilter, setAvailabilityFilter] = useState<string>('all');
+  const [departmentFilter, setDepartmentFilter] = useState<string>('all');
   const [showReminder, setShowReminder] = useState(true);
   const { toast } = useToast();
 
@@ -29,16 +30,20 @@ const Catalog = () => {
         book.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
         book.author.toLowerCase().includes(searchTerm.toLowerCase()) ||
         book.isbn.includes(searchTerm) ||
-        book.shelfLocation.toLowerCase().includes(searchTerm.toLowerCase());
+        book.shelfLocation.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        book.department.toLowerCase().includes(searchTerm.toLowerCase());
 
       const matchesAvailability =
         availabilityFilter === 'all' ||
         (availabilityFilter === 'available' && book.availableCopies > 0) ||
         (availabilityFilter === 'unavailable' && book.availableCopies === 0);
 
-      return matchesSearch && matchesAvailability;
+      const matchesDepartment =
+        departmentFilter === 'all' || book.department === departmentFilter;
+
+      return matchesSearch && matchesAvailability && matchesDepartment;
     });
-  }, [searchTerm, availabilityFilter]);
+  }, [searchTerm, availabilityFilter, departmentFilter]);
 
   const handleBorrow = (book: Book) => {
     toast({
@@ -99,17 +104,29 @@ const Catalog = () => {
             ))}
           </div>
 
-          {/* Search and Filter */}
+          {/* Search and Filters */}
           <div className="flex flex-col sm:flex-row gap-4">
             <div className="relative flex-1">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <Input
-                placeholder="Search by title, author, ISBN, or shelf..."
+                placeholder="Search by title, author, ISBN, shelf, or department..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="pl-10 bg-card border-border"
               />
             </div>
+            <Select value={departmentFilter} onValueChange={setDepartmentFilter}>
+              <SelectTrigger className="w-full sm:w-56 bg-card border-border">
+                <Building2 className="h-4 w-4 mr-2 text-muted-foreground" />
+                <SelectValue placeholder="All Departments" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">All Departments</SelectItem>
+                {departments.map((dept) => (
+                  <SelectItem key={dept} value={dept}>{dept}</SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
             <Select value={availabilityFilter} onValueChange={setAvailabilityFilter}>
               <SelectTrigger className="w-full sm:w-48 bg-card border-border">
                 <Filter className="h-4 w-4 mr-2 text-muted-foreground" />
