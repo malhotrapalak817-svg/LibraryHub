@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { BookOpen, Library, Settings, Bell } from 'lucide-react';
+import { BookOpen, Library, IndianRupee, Bell } from 'lucide-react';
 import { BorrowedBook } from '@/lib/types';
 import { getBooksDueSoon } from '@/lib/libraryUtils';
 interface NavigationProps {
@@ -20,8 +20,8 @@ export function Navigation({
     icon: BookOpen
   }, {
     path: '/settings',
-    label: 'Settings',
-    icon: Settings
+    label: 'Fine',
+    icon: IndianRupee
   }];
   return <header className="sticky top-0 z-50 bg-card/95 backdrop-blur-sm border-b border-border warm-shadow">
       <div className="container mx-auto px-4">
