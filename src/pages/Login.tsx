@@ -75,12 +75,6 @@ const Login = () => {
     </div>
   );
 };
-export default function Login() {
-  return (
-    <div style={{ fontSize: "30px" }}>
-      LOGIN PAGE WORKING
-    </div>
-  );
-}
+export default Login;
 
 
