@@ -2,8 +2,8 @@ import { Book, BorrowedBook, LibrarySettings, Department } from './types';
 import { addDays, subDays } from 'date-fns';
 
 export const librarySettings: LibrarySettings = {
-  finePerDay: 0.50,
-  currency: '$',
+  finePerDay: 5,
+  currency: 'Rs.',
   borrowPeriodDays: 14,
 };
 
@@ -261,7 +261,7 @@ export const borrowedBooks: BorrowedBook[] = [
     borrowDate: subDays(today, 20),
     dueDate: subDays(today, 6), // Overdue by 6 days
     status: 'overdue',
-    fineAmount: 3.00,
+    fineAmount: 30,
   },
   {
     id: 'b3',
@@ -305,6 +305,6 @@ export const borrowedBooks: BorrowedBook[] = [
     borrowDate: subDays(today, 18),
     dueDate: subDays(today, 4), // Overdue by 4 days
     status: 'overdue',
-    fineAmount: 2.00,
+    fineAmount: 20,
   },
 ];
