@@ -4,7 +4,7 @@ import { addDays, subDays } from 'date-fns';
 export const librarySettings: LibrarySettings = {
   finePerDay: 5,
   currency: 'Rs.',
-  borrowPeriodDays: 14,
+  borrowPeriodDays: 30,
 };
 
 export const departments: Department[] = [
