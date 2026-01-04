@@ -77,4 +77,4 @@ const Fine = () => {
   );
 };
 
-export default Settings;
+export default Fine;
