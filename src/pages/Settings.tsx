@@ -2,7 +2,7 @@ import { Settings as SettingsIcon, IndianRupee, Calendar } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { librarySettings } from '@/lib/mockData';
 
-const Settings = () => {
+const Fine = () => {
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
