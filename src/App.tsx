@@ -29,7 +29,7 @@ const App = () => (
      <BrowserRouter>
       <Routes>
         <Route path="/login" element={<Login />} />
-        <Route path="/" element={<Catalog />} />
+        <Route path="/home" element={<Catalog />} />
         <Route path="/borrowed" element={<BorrowedDashboard />} />
         <Route path="/settings" element={<Settings />} />
         <Route path="*" element={<NotFound />} />
