@@ -26,27 +26,16 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route
-            path="/*"
-            element={
-              <ProtectedRoute>
-                <div className="min-h-screen bg-background">
-                  <Navigation borrowedBooks={borrowedBooks} />
-                  <Routes>
-                    <Route path="/" element={<Catalog />} />
-                    <Route path="/borrowed" element={<BorrowedDashboard />} />
-                    <Route path="/settings" element={<Settings />} />
-                    <Route path="*" element={<NotFound />} />
-                  </Routes>
-                </div>
-              </ProtectedRoute>
-            }
-          />
-        </Routes>
-      </BrowserRouter>
+     <BrowserRouter>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Catalog />} />
+        <Route path="/borrowed" element={<BorrowedDashboard />} />
+        <Route path="/settings" element={<Settings />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </BrowserRouter>
+ 
     </TooltipProvider>
   </QueryClientProvider>
 );
