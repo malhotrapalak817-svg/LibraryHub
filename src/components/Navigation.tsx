@@ -1,5 +1,6 @@
-import { Link, useLocation } from 'react-router-dom';
-import { BookOpen, Library, IndianRupee, Bell } from 'lucide-react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { BookOpen, Library, IndianRupee, Bell, LogOut } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 import { BorrowedBook } from '@/lib/types';
 import { getBooksDueSoon } from '@/lib/libraryUtils';
 interface NavigationProps {
@@ -9,7 +10,14 @@ export function Navigation({
   borrowedBooks
 }: NavigationProps) {
   const location = useLocation();
+  const navigate = useNavigate();
   const booksDueSoon = getBooksDueSoon(borrowedBooks);
+
+  const handleLogout = () => {
+    localStorage.removeItem('isLoggedIn');
+    localStorage.removeItem('studentId');
+    navigate('/login');
+  };
   const navItems = [{
     path: '/',
     label: 'Catalog',
@@ -60,6 +68,16 @@ export function Navigation({
                   </span>
                 </div>
               </div>}
+            {/* Logout Button */}
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={handleLogout}
+              className="ml-2 text-muted-foreground hover:text-foreground hover:bg-secondary"
+            >
+              <LogOut className="h-4 w-4" />
+              <span className="hidden sm:inline ml-2">Logout</span>
+            </Button>
           </nav>
         </div>
       </div>
