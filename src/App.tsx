@@ -18,7 +18,12 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   if (!isLoggedIn) {
     return <Navigate to="/login" replace />;
   }
-  return <>{children}</>;
+  return (
+    <>
+      <Navigation borrowedBooks={borrowedBooks} />
+      {children}
+    </>
+  );
 };
 
 const App = () => (
