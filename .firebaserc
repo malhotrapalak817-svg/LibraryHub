@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "libraryhub-d8a88"
-  }
+    "default": "lib-new-89bd7",
+    "dist": "libraryhub-c6656"
+  },
+  "targets": {},
+  "etags": {}
 }
