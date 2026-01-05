@@ -18,9 +18,6 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   if (!isLoggedIn) {
     return <Navigate to="/login" replace />;
   }
-  else {
-    return <Navigate to="/" replace />;
-  }
   return <>{children}</>;
 };
 
@@ -32,9 +29,9 @@ const App = () => (
      <BrowserRouter>
       <Routes>
         <Route path="/login" element={<Login />} />
-        <Route path="/" element={<Catalog />} />
-        <Route path="/borrowed" element={<BorrowedDashboard />} />
-        <Route path="/settings" element={<Settings />} />
+        <Route path="/" element={<ProtectedRoute><Catalog /></ProtectedRoute>} />
+        <Route path="/borrowed" element={<ProtectedRoute><BorrowedDashboard /></ProtectedRoute>} />
+        <Route path="/settings" element={<ProtectedRoute><Settings /></ProtectedRoute>} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
